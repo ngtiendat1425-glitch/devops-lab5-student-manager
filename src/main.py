@@ -24,6 +24,7 @@ def main():
 
     print(f"\nTotal: {len(students)} students")
 
+ feature/search-student
         # Tim kiem sinh vien
     print("\n--- Tim kiem ---")
     search_student(students, "Van")
@@ -50,3 +51,8 @@ def search_student(students: list, keyword: str) -> list:
         print(f"Khong tim thay sinh vien: {keyword}")
 
     return results
+
+
+if __name__ == "__main__":
+    main()
+ main
