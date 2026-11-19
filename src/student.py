@@ -1,35 +1,45 @@
-"""
-Student Manager — DevOps Lab 5
-Module: Student Model
-"""
+"""Student Manager — DevOps Lab 5."""
+
+from student import Student
 
 
-class Student:
-    """Lớp đại diện cho một sinh viên."""
+def add_student(
+    students: list,
+    student_id: str,
+    name: str,
+    age: int,
+    grade: str,
+) -> list:
+    """Thêm sinh viên mới, có kiểm tra trùng mã."""
+    for student in students:
+        if student.student_id == student_id:
+            print(f"Mã sinh viên {student_id} đã tồn tại!")
+            return students
 
-    def __init__(self, student_id: str, name: str, age: int, grade: str):
-        self.student_id = student_id
-        self.name = name
-        self.age = age
-        self.grade = grade
+    new_student = Student(student_id, name, age, grade)
+    students.append(new_student)
+    print(f"Đã thêm sinh viên: {new_student}")
+    return students
 
-    def __str__(self) -> str:
-        return (
-            f"Student(id={self.student_id}, name='{self.name}', "
-            f"age={self.age}, grade='{self.grade}')"
-        )
 
-    def to_dict(self) -> dict:
-        """Chuyển đối tượng Student thành dictionary."""
-        return {
-            "student_id": self.student_id,
-            "name": self.name,
-            "age": self.age,
-            "grade": self.grade,
-        }
+def main():
+    print("=" * 50)
+    print("STUDENT MANAGER — DevOps Lab 5")
+    print("=" * 50)
+
+    students = [
+        Student("SV001", "Nguyen Van A", 20, "K20"),
+        Student("SV002", "Tran Thi B", 21, "K20"),
+        Student("SV003", "Le Van C", 19, "K21"),
+    ]
+
+    add_student(students, "SV004", "Pham Thi D", 22, "K19")
+
+    for student in students:
+        print(f"  {student}")
+
+    print(f"\nTotal: {len(students)} students")
 
 
 if __name__ == "__main__":
-    s1 = Student("SV001", "Nguyen Van A", 20, "K20")
-    print(s1)
-    print(s1.to_dict())
+    main()
